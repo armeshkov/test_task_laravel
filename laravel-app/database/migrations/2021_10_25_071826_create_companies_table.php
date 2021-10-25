@@ -20,6 +20,8 @@ class CreateCompaniesTable extends Migration
             $table->string('phone');
             $table->string('website');
             $table->string('logo');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
