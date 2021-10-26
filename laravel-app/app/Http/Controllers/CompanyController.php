@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,11 +21,10 @@ class CompanyController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('companies.create');
     }
 
     /**
@@ -40,13 +40,13 @@ class CompanyController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+
      */
-    public function show($id)
+    public function show(Company $company)
     {
-        //
+        dd($company);
+        $this->authorize('view', Company::query()->where('id', $id)->first());
+        return view('companies.show', ['id' => $id]);
     }
 
     /**
