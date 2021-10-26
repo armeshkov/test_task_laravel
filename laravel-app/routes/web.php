@@ -25,7 +25,7 @@ Route::middleware(['auth'])->name('dashboard')->prefix('dashboard')->group(funct
     Route::get('', function () {
         return view('dashboard');
     });
-    Route::resource('manage-company', \App\Http\Controllers\CompanyController::class);
+    Route::resource('companies', \App\Http\Controllers\CompanyController::class);
 });
 
 require __DIR__ . '/auth.php';
