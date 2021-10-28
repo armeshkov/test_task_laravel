@@ -1,13 +1,32 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('companies.base')
+@section('content')
+    <div class="container">
+        <form>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name of company</label>
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" name="email">
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone number</label>
+                <input type="tel" class="form-control" id="phone" name="phone" aria-describedby="phoneHelp">
+                <div id="phoneHelp" class="form-text">Without +7 and spaces</div>
+            </div>
+            <div class="mb-3">
+                <label for="website" class="form-label">Link to website of company</label>
+                <input type="text" class="form-control" id="website" name="website">
+            </div>
 
-</body>
-</html>
+            <div class="mb-3">
+                <label for="logo" class="formFile">Upload logo of company</label>
+                <input type="file" class="form-control" id="logo" name="logo">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+@endsection

@@ -20,7 +20,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link" href="#">Create company</a>
+                        <a class="nav-link" href="{{ route('dashboardcompanies.create') }}">Create company</a>
                     </div>
                 </div>
             </div>
