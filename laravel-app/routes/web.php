@@ -21,8 +21,8 @@ Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');*/
 
-Route::middleware(['auth'])->name('dashboard')->prefix('dashboard')->group(function () {
-    Route::get('', function () {
+Route::middleware(['auth'])->name('dashboard')->group(function () {
+    Route::get('dashboard', function () {
         return view('dashboard');
     });
     Route::resource('companies', \App\Http\Controllers\CompanyController::class);
