@@ -1,7 +1,8 @@
 @extends('companies.base')
 @section('content')
     <div class="container">
-        <form>
+        <form method="post" action="{{ route('dashboardcompanies.store')}}" enctype="multipart/form-data">
+            @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name of company</label>
                 <input type="text" class="form-control" id="name" name="name">
