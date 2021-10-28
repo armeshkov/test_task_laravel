@@ -31,11 +31,22 @@ class CompanyController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+
+
+        $folder = Auth::user()->id;
+        $logo = $request->file('logo')->store("images/$folder");
+
+        $company = Company::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'website' => $request->website,
+            'logo' => $logo,
+            'user_id' => Auth::user()->id,
+        ]);
     }
 
     /**
