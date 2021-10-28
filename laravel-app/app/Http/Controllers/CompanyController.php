@@ -44,9 +44,8 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        dd($company);
-        $this->authorize('view', Company::query()->where('id', $id)->first());
-        return view('companies.show', ['id' => $id]);
+        $this->authorize('view', $company);
+        return view('companies.show', ['company' => $company]);
     }
 
     /**
