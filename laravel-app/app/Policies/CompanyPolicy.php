@@ -30,7 +30,7 @@ class CompanyPolicy
      */
     public function view(User $user, Company $company)
     {
-        return $user->id == $company->id;
+        return $user->id == $company->user_id;
     }
 
     /**
