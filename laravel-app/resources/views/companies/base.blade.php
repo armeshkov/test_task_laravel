@@ -28,6 +28,12 @@
     </div>
 </header>
 
+<div class="container">
+    @if (\Illuminate\Support\Facades\Session::has('message'))
+        <div class="alert alert-info">{{ \Illuminate\Support\Facades\Session::get('message') }}</div>
+    @endif
+</div>
+
 @yield('content')
 
 <footer>
