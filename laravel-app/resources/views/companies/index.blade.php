@@ -21,7 +21,9 @@
                 <td>{{ $company->email }}</td>
                 <td>{{ $company->phone }}</td>
                 <td>{{ $company->website }}</td>
-                <td>{{ $company->logo }}</td>
+                <td>
+                    <img src="{{ asset('storage/' . $company->logo) }}" alt="" width="100" height="100">
+                </td>
                 <td>{{ $company->created_at }}</td>
                 <td>{{ $company->updated_at }}</td>
                 <td>
