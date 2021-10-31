@@ -29,6 +29,11 @@
                 <td>
                     <a class="btn btn-small btn-primary" href="{{ route('dashboardcompanies.show', ['company' => $company]) }}">Show</a>
                     <a class="btn btn-small btn-success" href="{{ route('dashboardcompanies.edit', ['company' => $company]) }}">Edit</a>
+                    <form class="pt-2" action="{{ route('dashboardcompanies.destroy', ['company' => $company]) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
         @endforeach

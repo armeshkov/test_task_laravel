@@ -125,11 +125,12 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Company $company)
     {
-        //
+        $this->authorize('view', $company);
+        $company->delete();
+        Session::flash('message', 'Successfully deleted the company!');
+        return Redirect::to(route('dashboardcompanies.index'));
     }
 }
