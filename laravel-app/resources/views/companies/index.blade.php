@@ -28,7 +28,7 @@
                 <td>{{ $company->updated_at }}</td>
                 <td>
                     <a class="btn btn-small btn-primary" href="{{ route('dashboardcompanies.show', ['company' => $company]) }}">Show</a>
-                    <a class="btn btn-small btn-success" href="">Edit</a>
+                    <a class="btn btn-small btn-success" href="{{ route('dashboardcompanies.edit', ['company' => $company]) }}">Edit</a>
                 </td>
             </tr>
         @endforeach
