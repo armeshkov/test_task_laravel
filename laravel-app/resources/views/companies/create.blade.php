@@ -1,7 +1,7 @@
 @extends('companies.base')
 @section('content')
     <div class="container">
-        <h1>Create Post</h1>
+        <h1>Create Company</h1>
 
         @if ($errors->any())
             <div class="alert alert-danger">
