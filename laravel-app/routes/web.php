@@ -26,6 +26,7 @@ Route::middleware(['auth'])->name('dashboard')->group(function () {
         return view('dashboard');
     });
     Route::resource('companies', \App\Http\Controllers\CompanyController::class);
+    Route::resource('companies.workers', \App\Http\Controllers\WorkerController::class);
 });
 
 require __DIR__ . '/auth.php';
