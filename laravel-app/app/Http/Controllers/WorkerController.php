@@ -14,17 +14,16 @@ class WorkerController extends Controller
     public function index(Company $company)
     {
         $this->authorize('viewAny', $company);
-        dd($company->workers);
+        return view('workers.index', ['company' => $company]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Company $company)
     {
-        //
+        return view('workers.create', ['company' => $company]);
     }
 
     /**
