@@ -25,6 +25,7 @@
                     </td>
                     <td>{{ $company->created_at }}</td>
                     <td>{{ $company->updated_at }}</td>
+                    <td><a href="{{ route('dashboardcompanies.workers.index', ['company' => $company]) }}" class="btn btn-primary">Workers</a></td>
                 </tr>
             </tbody>
         </table>
