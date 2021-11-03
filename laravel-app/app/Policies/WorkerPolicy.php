@@ -24,13 +24,11 @@ class WorkerPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Worker  $worker
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Worker $worker)
+    public function view(User $user, Worker $worker, Company $company)
     {
-        //
+        return ($company->id == $worker->company->id && $user->id == $company->user_id);
     }
 
     /**

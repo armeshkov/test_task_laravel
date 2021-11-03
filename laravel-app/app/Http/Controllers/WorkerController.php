@@ -63,12 +63,10 @@ class WorkerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Company $company, Worker $worker)
     {
-        //
+        $this->authorize('view', [$worker, $company]);
     }
 
     /**
