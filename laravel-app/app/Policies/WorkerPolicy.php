@@ -59,9 +59,9 @@ class WorkerPolicy
      * @param  \App\Models\Worker  $worker
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Worker $worker)
+    public function delete(User $user, Company $company, Worker $worker)
     {
-        //
+        return ($company->id == $worker->company->id && $user->id == $company->user_id);
     }
 
     /**
