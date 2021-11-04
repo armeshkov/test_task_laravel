@@ -67,31 +67,50 @@ class WorkerController extends Controller
     public function show(Company $company, Worker $worker)
     {
         $this->authorize('view', [$worker, $company]);
+        return view('workers.show', ['company' => $company, 'worker' => $worker]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Company $company, Worker $worker)
     {
-        //
+        $this->authorize('update', [$company, $worker]);
+        return view('workers.edit', ['company' => $company,'worker' => $worker]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Company $company, Worker $worker)
     {
-        //
-    }
+        $this->authorize('update', [$company, $worker]);
+        $rules = array(
+            'first_name' => 'required',
+            'last_name' => 'required',
+            //'phone' => ['required', 'regex:/^((\+?7|8)(?!95[4-79]|99[08]|907|94[^0]|336)([348]\d|9[0-6789]|7[0247])\d{8}|\+?(99[^4568]\d{7,11}|994\d{9}|9955\d{8}|996[57]\d{8}|9989\d{8}|380[34569]\d{8}|375[234]\d{8}|372\d{7,8}|37[0-4]\d{8}))$/'],
+            'phone' => 'required|min:10',
+            'email' => 'required|email'
+        );
+        $validator = Validator::make($request->post(), $rules);
+        if ($validator->fails()) {
+            return redirect(route('dashboardcompanies.workers.edit', ['company' => $company, 'worker' => $worker]))
+                ->withErrors($validator)
+                ->withInput();
+        }
+        Worker::where('id', $worker->id)->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'company_id' => $worker->company_id,
+            'email' => $request->email,
+            'phone' => $request->phone,
 
+        ]);
+        return Redirect::to(route('dashboardcompanies.workers.show', ['company' => $company, 'worker' => $worker]))->with('message', 'Success!');
+    }
     /**
      * Remove the specified resource from storage.
      *
