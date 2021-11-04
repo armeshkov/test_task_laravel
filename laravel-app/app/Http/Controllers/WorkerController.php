@@ -114,11 +114,12 @@ class WorkerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Company $company, Worker $worker)
     {
-        //
+        $this->authorize('update', [$company, $worker]);
+        $worker->delete();
+        Session::flash('message', 'Successfully deleted the company!');
+        return Redirect::to(route('dashboardcompanies.workers.index', $company));
     }
 }
