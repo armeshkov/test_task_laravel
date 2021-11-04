@@ -26,7 +26,7 @@
                     <td>
                         <a class="btn btn-small btn-primary" href="{{ route('dashboardcompanies.workers.show', ['company' => $company, 'worker' => $worker]) }}">Show</a>
                         <a class="btn btn-small btn-success" href="{{ route('dashboardcompanies.workers.edit', ['company' => $company, 'worker' => $worker]) }}">Edit</a>
-                        <form class="pt-2" action="{{ route('dashboardcompanies.destroy', ['company' => $company]) }}" method="post">
+                        <form class="pt-2" action="{{ route('dashboardcompanies.workers.destroy', ['company' => $company, 'worker' => $worker]) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
