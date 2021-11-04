@@ -45,13 +45,11 @@ class WorkerPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Worker  $worker
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Worker $worker)
+    public function update(User $user, Company $company,Worker $worker)
     {
-        //
+        return ($company->id == $worker->company->id && $user->id == $company->user_id);
     }
 
     /**
