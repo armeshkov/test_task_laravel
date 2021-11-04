@@ -15,7 +15,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($company->workers as $worker)
+            @foreach ($workers as $worker)
                 <tr>
                     <th scope="row">{{ $worker->first_name }}</th>
                     <td>{{ $worker->last_name }}</td>
