@@ -25,7 +25,7 @@
                     <td>{{ $worker->updated_at }}</td>
                     <td>
                         <a class="btn btn-small btn-primary" href="{{ route('dashboardcompanies.workers.show', ['company' => $company, 'worker' => $worker]) }}">Show</a>
-                        <a class="btn btn-small btn-success" href="{{ route('dashboardcompanies.edit', ['company' => $company]) }}">Edit</a>
+                        <a class="btn btn-small btn-success" href="{{ route('dashboardcompanies.workers.edit', ['company' => $company, 'worker' => $worker]) }}">Edit</a>
                         <form class="pt-2" action="{{ route('dashboardcompanies.destroy', ['company' => $company]) }}" method="post">
                             @csrf
                             @method('DELETE')
