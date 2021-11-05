@@ -36,6 +36,7 @@
             @endforeach
             </tbody>
         </table>
+        {{ $workers->links() }}
     </div>
     <div class="container text-center">
         <a href="{{ route('dashboardcompanies.workers.create', ['company' => $company]) }}" class="btn btn-primary">Add worker</a>
