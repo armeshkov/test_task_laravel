@@ -17,7 +17,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::query()->where('id', '=', Auth::user()->id)->paginate(15);
+        $companies = Company::query()->where('user_id', '=', Auth::user()->id)->paginate(15);
         return view('companies.index')->with('companies', $companies);
     }
 
