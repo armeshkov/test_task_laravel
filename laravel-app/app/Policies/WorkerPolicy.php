@@ -37,9 +37,9 @@ class WorkerPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user, Company $company)
     {
-        //
+        return $user->id == $company->user_id;
     }
 
     /**
