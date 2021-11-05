@@ -18,7 +18,7 @@ class WorkerController extends Controller
     public function index(Company $company)
     {
         $this->authorize('viewAny', $company);
-        $workers = Worker::query()->where('id', '=', $company->id)->paginate(15);
+        $workers = Worker::query()->where('company_id', '=', $company->id)->paginate(15);
         return view('workers.index', ['company' => $company, 'workers' => $workers]);
     }
 
