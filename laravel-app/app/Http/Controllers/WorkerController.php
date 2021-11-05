@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreWorkerRequest;
+use App\Http\Requests\UpdateWorkerRequest;
 use App\Models\Company;
 use App\Models\Worker;
 use Illuminate\Http\Request;
@@ -28,6 +30,7 @@ class WorkerController extends Controller
      */
     public function create(Company $company)
     {
+        $this->authorize('create', [Worker::class, $company]);
         return view('workers.create', ['company' => $company]);
     }
 
@@ -35,21 +38,10 @@ class WorkerController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    public function store(Request $request, Company $company)
+    public function store(StoreWorkerRequest $request, Company $company)
     {
-        $rules = array(
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email',
-            //'phone' => ['required', 'regex:/^((\+?7|8)(?!95[4-79]|99[08]|907|94[^0]|336)([348]\d|9[0-6789]|7[0247])\d{8}|\+?(99[^4568]\d{7,11}|994\d{9}|9955\d{8}|996[57]\d{8}|9989\d{8}|380[34569]\d{8}|375[234]\d{8}|372\d{7,8}|37[0-4]\d{8}))$/'],
-            'phone' => 'required|min:10',
-        );
-        $validator = Validator::make($request->post(), $rules);
-        if ($validator->fails()) {
-            return redirect(route('dashboardcompanies.workers.create'))
-                ->withErrors($validator)
-                ->withInput();
-        }
+        $this->authorize('create', [Worker::class, $company]);
+        $request->validated();
         $worker = Worker::create([
            'first_name' => $request->first_name,
            'last_name' => $request->last_name,
@@ -86,22 +78,12 @@ class WorkerController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      */
-    public function update(Request $request, Company $company, Worker $worker)
+    public function update(UpdateWorkerRequest $request, Company $company, Worker $worker)
     {
         $this->authorize('update', [$company, $worker]);
-        $rules = array(
-            'first_name' => 'required',
-            'last_name' => 'required',
-            //'phone' => ['required', 'regex:/^((\+?7|8)(?!95[4-79]|99[08]|907|94[^0]|336)([348]\d|9[0-6789]|7[0247])\d{8}|\+?(99[^4568]\d{7,11}|994\d{9}|9955\d{8}|996[57]\d{8}|9989\d{8}|380[34569]\d{8}|375[234]\d{8}|372\d{7,8}|37[0-4]\d{8}))$/'],
-            'phone' => 'required|min:10',
-            'email' => 'required|email'
-        );
-        $validator = Validator::make($request->post(), $rules);
-        if ($validator->fails()) {
-            return redirect(route('dashboardcompanies.workers.edit', ['company' => $company, 'worker' => $worker]))
-                ->withErrors($validator)
-                ->withInput();
-        }
+
+        $request->validated();
+
         Worker::where('id', $worker->id)->update([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
